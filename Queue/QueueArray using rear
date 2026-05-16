@@ -1,0 +1,51 @@
+Space Complixity is Better.
+
+-------------------------------------------
+
+import java.util.Scanner;
+
+class QueueArray {
+    int size = 10;
+    int arr[];
+    int rear = -1;
+    QueueArray() {
+        arr = new int[size];
+    }
+    void enqueue(int data) {
+        if(rear == size - 1) {
+            throw new IndexOutOfBoundsException("Queue is Full");
+        }
+        if(rear == -1) {
+            arr[++rear] = data;
+            return;
+        }
+        arr[++rear] = data;
+    }
+    
+    int dequeue() {
+        if(rear == -1) {
+            throw new IndexOutOfBoundsException("Queue is Empty");
+        }
+        int temp = arr[0];
+        for(int i = 1;i <= rear;i++) {
+            arr[i - 1] = arr[i];
+        }
+        rear--;
+        return temp;
+    }
+    
+    public static void main(String args[]) {
+        QueueArray queue = new QueueArray();
+        
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        // queue.enqueue(40);
+        
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+        // System.out.println(queue.dequeue());
+    }
+}
