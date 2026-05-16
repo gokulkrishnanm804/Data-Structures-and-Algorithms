@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+
+
+class QueueLinkedList {
+    
+    class Node {
+    int data;
+    Node next;
+    
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+    
+    Node front,rear;
+    QueueLinkedList() {
+        front = null;
+        rear = null;
+    }
+    
+    void enqueue(int data) {
+        Node newnode = new Node(data);
+        if(front == null) {
+            front = newnode;
+            rear = newnode;
+            return;
+        }
+        rear.next = newnode;
+        rear = newnode;
+    }
+    
+    int dequeue() {
+        if(front == null) {
+            throw new IndexOutOfBoundsException("Queue is Empty");
+        }
+        int temp = front.data;
+        front = front.next;
+        return temp;
+    }
+    
+    public static void main(String args[]) {
+        QueueLinkedList list = new
+        QueueLinkedList();
+        
+        list.enqueue(10);
+        list.enqueue(20);
+        list.enqueue(30);
+        
+        System.out.println(list.dequeue());
+        System.out.println(list.dequeue());
+        System.out.println(list.dequeue());
+        System.out.println(list.dequeue());
+    }
+}
